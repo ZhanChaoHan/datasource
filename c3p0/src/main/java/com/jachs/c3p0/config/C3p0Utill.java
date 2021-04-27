@@ -50,7 +50,8 @@ public class C3p0Utill {
 	 * @see C3P0ConfigXmlUtils
 	 */
 	public ComboPooledDataSource initXML() {
-		ComboPooledDataSource cpds=new ComboPooledDataSource("mySource");
+//		ComboPooledDataSource cpds=new ComboPooledDataSource("mySource");
+		ComboPooledDataSource cpds=new ComboPooledDataSource();//不给参数使用默认数据源
 		return cpds;
 	}
 }

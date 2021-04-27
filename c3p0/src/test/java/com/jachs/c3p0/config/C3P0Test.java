@@ -20,23 +20,33 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 public class C3P0Test {
 	private C3p0Utill c3p0Utill = new C3p0Utill();
 
-	ComboPooledDataSource cpds;
+	ComboPooledDataSource prCpds;
+	ComboPooledDataSource xmlCpds;
 
 	@Before
 	public void init() throws FileNotFoundException, IOException, PropertyVetoException {
-		cpds = c3p0Utill.initProperties();
-//		cpds = c3p0Utill.initXML();
+		prCpds = c3p0Utill.initProperties();
+		xmlCpds = c3p0Utill.initXML();
 	}
 
 	@Test
-	public void tetc() throws SQLException {
-		Connection connection = cpds.getConnection();
+	public void tetcPrCpds() throws SQLException {
+		Connection connection = prCpds.getConnection();
 
 		ResultSet resultSet = connection.prepareStatement("show tables").executeQuery();
 
 		while (resultSet.next()) {
 			System.out.println(resultSet.getString(1));
 		}
-		System.out.println(cpds.getMaxPoolSize());
+	}
+	@Test
+	public void tetcxmlCpds() throws SQLException {
+		Connection connection = xmlCpds.getConnection();
+
+		ResultSet resultSet = connection.prepareStatement("show tables").executeQuery();
+
+		while (resultSet.next()) {
+			System.out.println(resultSet.getString(1));
+		}
 	}
 }
